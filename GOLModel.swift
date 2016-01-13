@@ -21,7 +21,7 @@ class GOLModel: NSObject {
         for _ in 0...nSize*nSize-1 {
             currentdata+=[false]
         }
-        //preData=currentdata
+        preData=currentdata
     }
     
     func DeleteData() {
@@ -34,6 +34,14 @@ class GOLModel: NSObject {
     func Next()->Int{
         var ifNeedBroadenGameView:Int = 0;
         preData = currentdata
+        if nSize<120{
+            for i in 0...nSize*nSize-1{
+                if currentdata[i]&&(i/nSize==0||i/nSize+1==nSize||i%nSize==0||i%nSize+1==nSize){
+                    ifNeedBroadenGameView = -1
+                    broadenData(preData,currentDataTmp: currentdata)
+                }
+            }
+        }
         for i in 0...nSize*nSize-1{
             let aroundAliveNum = getAroundAliveNum(i)
             if aroundAliveNum == 3{
@@ -44,12 +52,6 @@ class GOLModel: NSObject {
             else{
                 currentdata[i] = false
             }
-            if nSize<120&&currentdata[i]&&(i/nSize<1||i/nSize+1>nSize||i%nSize<1||i%nSize+1>nSize){
-                ifNeedBroadenGameView = -1
-            }
-        }
-        if ifNeedBroadenGameView==(-1){
-            broadenData()
         }
         return ifNeedBroadenGameView
     }
@@ -73,13 +75,14 @@ class GOLModel: NSObject {
         return rlt
     }
     
-    func broadenData(){
+    func broadenData(preDataTmp:[Bool],currentDataTmp:[Bool]){
         let increment=2
         nSize = nSize+2*increment
         initWithSize(nSize)
         for i in increment...nSize-increment-1{
             for j in increment...nSize-increment-1{
-                currentdata[j*nSize+i]=preData[(j-increment)*(nSize-2*increment)+i-increment]
+                currentdata[j*nSize+i]=currentDataTmp[(j-increment)*(nSize-2*increment)+i-increment]
+                preData[j*nSize+i]=preDataTmp[(j-increment)*(nSize-2*increment)+i-increment]
             }
         }
     }
