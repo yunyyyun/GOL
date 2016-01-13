@@ -45,9 +45,9 @@ class GOLViewController: UIViewController, UITextFieldDelegate {
         generation = -1
         data = GOLModel()
         data.initWithSize(5)
+        initOtherViews()
         initGameViewWithCellNumber(data.currentdata.count)
         refreshGameView()
-        initOtherViews()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector("viewTapped"))
         tapGesture.cancelsTouchesInView = false
@@ -85,12 +85,23 @@ class GOLViewController: UIViewController, UITextFieldDelegate {
                 cellBtn.addTarget(self, action:Selector("cellBtnclick:"), forControlEvents: .TouchUpInside)
                 gameView.addSubview(cellBtn)
             }
+            xText.enabled=true
+            xText.backgroundColor = UIColor(red: 1.0, green: 0.8, blue: 0.7, alpha: 0.8)
+            yText.enabled=true
+            yText.backgroundColor = UIColor(red: 1.0, green: 0.8, blue: 0.7, alpha: 0.8)
+            addBtn.enabled=true
+            deleteBtn.enabled=true
         }
         else{
-            //gameView.backgroundColor = UIColor.grayColor()
             gView = GOLView2()
             let frame: CGRect = gameView.frame;
             gView.initWithFrame(frame.width,size: data.nSize)
+            xText.enabled=false
+            xText.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.6)
+            yText.enabled=false
+            yText.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.6)
+            addBtn.enabled=false
+            deleteBtn.enabled=false
         }
         if headLabel==nil{
             headLabel = UILabel(frame: CGRectMake(50, 18, self.view.frame.size.width-100, 30))
@@ -107,7 +118,7 @@ class GOLViewController: UIViewController, UITextFieldDelegate {
             var btnID: Int
             for view in gameView.subviews {
                 btnID = Int(view.accessibilityIdentifier!)!
-                view.backgroundColor=data.currentdata[btnID] ?UIColor.blackColor():UIColor.grayColor()
+                view.backgroundColor=data.currentdata[btnID] ?ColorData.aliveColor():ColorData.dieColor()
             }
         }
         else{
@@ -159,7 +170,7 @@ class GOLViewController: UIViewController, UITextFieldDelegate {
         xText.placeholder = "xPoint"
         xText.returnKeyType = UIReturnKeyType.Go
         xText.clearButtonMode = UITextFieldViewMode.WhileEditing
-        xText.backgroundColor = UIColor(red: 1.0, green: 0.8, blue: 0.7, alpha: 0.9)
+        //xText.backgroundColor = UIColor(red: 1.0, green: 0.8, blue: 0.7, alpha: 0.9)
         xText.keyboardType = UIKeyboardType.NumberPad
         xText.delegate = self
         
@@ -229,11 +240,11 @@ class GOLViewController: UIViewController, UITextFieldDelegate {
         let btnID: Int = Int(btn.accessibilityIdentifier!)!
         if data.currentdata[btnID]{
             data.currentdata[btnID] = false
-            btn.backgroundColor = UIColor.grayColor();
+            btn.backgroundColor = ColorData.dieColor();
         }
         else{
             data.currentdata[btnID] = true
-            btn.backgroundColor = UIColor.blackColor();
+            btn.backgroundColor = ColorData.aliveColor();
         }
         data.preData = data.currentdata
         preBtn.enabled = false
@@ -316,7 +327,7 @@ class GOLViewController: UIViewController, UITextFieldDelegate {
             let btnID = addPointY*data.nSize+addPointX
             let btn = gameView.subviews[btnID] as! UIButton
             data.currentdata[btnID] = true
-            btn.backgroundColor = UIColor.blackColor()
+            btn.backgroundColor = ColorData.aliveColor()
             preBtn.enabled = false
             nextBtn.enabled = false
             timeBtn.enabled = false
@@ -335,7 +346,7 @@ class GOLViewController: UIViewController, UITextFieldDelegate {
             let btnID = addPointY*data.nSize+addPointX
             let btn = gameView.subviews[btnID] as! UIButton
             data.currentdata[btnID] = false
-            btn.backgroundColor = UIColor.grayColor()
+            btn.backgroundColor = ColorData.dieColor()
             preBtn.enabled = false
             nextBtn.enabled = false
             timeBtn.enabled = false
@@ -382,6 +393,7 @@ class GOLViewController: UIViewController, UITextFieldDelegate {
         nextBtn.enabled=false
         timeBtn.enabled=false
         restartBtn.enabled=false
+        timeBtn.setTitle("自动", forState: .Normal);
         if !(timer==nil){
             timer.invalidate()
             timer = nil;

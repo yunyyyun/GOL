@@ -14,6 +14,7 @@
 		514D11BE1C3C15280022F499 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514D11BC1C3C15280022F499 /* LaunchScreen.storyboard */; };
 		515D632C1C43E5000035D2FE /* GOLView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515D632B1C43E5000035D2FE /* GOLView2.swift */; };
 		515D632E1C43E8450035D2FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515D632D1C43E8450035D2FE /* QuartzCore.framework */; };
+		51A2AFD31C4685B1001A4DF7 /* ColorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A2AFD21C4685B1001A4DF7 /* ColorData.swift */; };
 		51E63CAD1C3D632D007A4360 /* GOLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E63CAC1C3D632D007A4360 /* GOLViewController.swift */; };
 		51E63CAF1C3D6345007A4360 /* GOLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E63CAE1C3D6345007A4360 /* GOLModel.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		514D11BF1C3C15280022F499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		515D632B1C43E5000035D2FE /* GOLView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOLView2.swift; sourceTree = "<group>"; };
 		515D632D1C43E8450035D2FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		51A2AFD21C4685B1001A4DF7 /* ColorData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorData.swift; sourceTree = "<group>"; };
 		51E63CAC1C3D632D007A4360 /* GOLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOLViewController.swift; sourceTree = SOURCE_ROOT; };
 		51E63CAE1C3D6345007A4360 /* GOLModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GOLModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -64,6 +66,7 @@
 		514D11B21C3C15280022F499 /* GOL */ = {
 			isa = PBXGroup;
 			children = (
+				51A2AFD21C4685B1001A4DF7 /* ColorData.swift */,
 				51E63CAE1C3D6345007A4360 /* GOLModel.swift */,
 				51E63CAC1C3D632D007A4360 /* GOLViewController.swift */,
 				515D632B1C43E5000035D2FE /* GOLView2.swift */,
@@ -154,6 +157,7 @@
 				51E63CAD1C3D632D007A4360 /* GOLViewController.swift in Sources */,
 				514D11B61C3C15280022F499 /* ViewController.swift in Sources */,
 				514D11B41C3C15280022F499 /* AppDelegate.swift in Sources */,
+				51A2AFD31C4685B1001A4DF7 /* ColorData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

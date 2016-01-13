@@ -25,25 +25,25 @@ class GOLView2: UIImageView {
             let cellBtnY: CGFloat = radius*CGFloat(y)
             let cellBtnX: CGFloat = radius*CGFloat(x)
             if data[i]{
-                CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1)
+                //CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1)
+                let aliveColor = ColorData.aliveColorComponents()
+                CGContextSetRGBFillColor(context, aliveColor[0],aliveColor[1],aliveColor[2],aliveColor[3])
             }
             else{
                 //CGContextSetRGBFillColor(context, 0.4, 0.4, 0.4, 1)
-                CGContextSetRGBFillColor(context, 1, 1, 1, 0.8)
+                let dieColor = ColorData.dieColorComponents()
+                CGContextSetRGBFillColor(context, dieColor[0],dieColor[1],dieColor[2],dieColor[3])
             }
-            CGContextSetRGBStrokeColor(context,0,0,0, 0)
+            //CGContextSetRGBStrokeColor(context,0,0,0,0)
             //CGContextAddEllipseInRect(context, CGRectMake(cellBtnX, cellBtnY, radius, radius))
             CGContextAddRect(context, CGRectMake(cellBtnX, cellBtnY, radius-1, radius-1));
-            CGContextDrawPath(context, .FillStroke)
+            CGContextDrawPath(context, .Fill)
         }
         image = UIGraphicsGetImageFromCurrentImageContext()
         //let data=UIImagePNGRepresentation(image!);
         //data?.writeToFile("/Users/mengyun/Desktop/ab1sc123.png", atomically: true)
     }
 }
-
-
-
 
 
 /*
